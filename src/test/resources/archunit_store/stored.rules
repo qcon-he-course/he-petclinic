@@ -1,0 +1,3 @@
+#
+#Thu Oct 22 13:11:05 EDT 2026
+no\ classes\ that\ are\ annotated\ with\ @Controller\ should\ call\ method\ where\ Errors.rejectValue(..),\ because\ field\ validation\ belongs\ in\ the\ form's\ Validator\ (for\ pets,\ PetValidator),\ so\ the\ add\ and\ edit\ forms\ share\ one\ rule.\ Move\ the\ check\ into\ the\ validator\ instead\ of\ calling\ rejectValue\ in\ the\ controller=1cbfc1d1-c4c3-4fdb-b562-260ce0bb3bc5
