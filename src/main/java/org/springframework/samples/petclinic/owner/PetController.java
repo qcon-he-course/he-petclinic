@@ -145,19 +145,8 @@ class PetController {
 	public String processUpdateForm(Owner owner, @Valid Pet pet, BindingResult result,
 			RedirectAttributes redirectAttributes) {
 
-		String petName = pet.getName();
-
-		// checking if the pet name already exists for the owner
-		if (StringUtils.hasText(petName)) {
-			Pet existingPet = owner.getPet(petName, false);
-			if (existingPet != null && !Objects.equals(existingPet.getId(), pet.getId())) {
-				result.rejectValue("name", "duplicate", "already exists");
-			}
-		}
-
-		LocalDate currentDate = LocalDate.now();
-		if (pet.getBirthDate() != null && pet.getBirthDate().isAfter(currentDate)) {
-			result.rejectValue("birthDate", "typeMismatch.birthDate");
+		if (isNameTakenByAnotherPet(owner, pet)) {
+			result.rejectValue("name", "duplicate", "already exists");
 		}
 
 		if (result.hasErrors()) {
@@ -176,6 +165,14 @@ class PetController {
 		}
 		redirectAttributes.addFlashAttribute("message", "Pet details has been edited");
 		return "redirect:/owners/{ownerId}";
+	}
+
+	private boolean isNameTakenByAnotherPet(Owner owner, Pet pet) {
+		if (!StringUtils.hasText(pet.getName())) {
+			return false;
+		}
+		Pet existingPet = owner.getPet(pet.getName(), false);
+		return existingPet != null && !Objects.equals(existingPet.getId(), pet.getId());
 	}
 
 	/**
