@@ -316,6 +316,32 @@
         <groupId>org.cyclonedx</groupId>
         <artifactId>cyclonedx-maven-plugin</artifactId>
       </plugin>
+      <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.30.1</version>
+        <configuration>
+          <targetClasses>
+            <param>org.springframework.samples.petclinic.owner.PetController</param>
+            <param>org.springframework.samples.petclinic.owner.PetValidator</param>
+          </targetClasses>
+          <targetTests>
+            <param>org.springframework.samples.petclinic.owner.Pet*Tests</param>
+          </targetTests>
+          <timestampedReports>false</timestampedReports>
+          <outputFormats>
+            <param>HTML</param>
+            <param>XML</param>
+          </outputFormats>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>1.2.3</version>
+          </dependency>
+        </dependencies>
+      </plugin>
     </plugins>
   </build>
   <licenses>
