@@ -22,6 +22,12 @@ PC-301 will change the pet add and edit forms. A change can only be written as a
 - Q2 editRejectedFormHasAlreadyBoundValuesOntoOwnersPet: a rejected edit has already bound the submitted values onto the loaded pet. Specify, or leave out?
 - Q3 editUnknownPetIdFailsWithNullPointerAndDoesNotSave: an unknown pet id ends in a NullPointerException and the error page. Specify, or leave out?
 
+### Decided by Prem, 31 October
+
+- Q1: in the spec as current behaviour. A defect candidate for a later change.
+- Q2: left out, known behaviour. Nothing is saved.
+- Q3: left out, known behaviour. A defect, outside this change.
+
 ## Capabilities
 
 ### New Capabilities
